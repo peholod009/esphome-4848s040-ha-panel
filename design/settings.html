@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=480">
+<title>Сарай — Настройки</title>
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@600;800&amp;display=swap">
+<style>
+  body{margin:0;background:#FFFFFF;font-family:"Nunito",system-ui,sans-serif;font-weight:600}
+  .u{font-weight:800}
+  .ab{position:absolute}
+  .card{position:absolute;box-sizing:border-box;border-radius:22px;background:#F3F4F8}
+  .fg{color:#212121}
+  .mut{color:#606682}
+  /* клавиша-вариант; выбранная «вдавлена» и залита серо-синим, как активная вкладка */
+  .seg{position:absolute;top:8px;height:48px;box-sizing:border-box;border-radius:16px;background:linear-gradient(180deg,#F7F7FB 0%,#E8EBF4 100%);border:2px solid #C7CCDE;border-bottom:6px solid #A9AFC4;display:flex;align-items:center;justify-content:center;gap:6px;font-size:17px;color:#212121;cursor:pointer;padding:0;font-family:inherit;font-weight:600}
+  .seg-on{top:12px;height:44px;background:#606682;border:2px solid #606682;color:#FFFFFF}
+  .key{position:absolute;box-sizing:border-box;border-radius:20px;background:linear-gradient(180deg,#F7F7FB 0%,#E8EBF4 100%);border:2px solid #C7CCDE;border-bottom:6px solid #A9AFC4;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;font-size:17px;color:#212121;text-decoration:none;cursor:pointer}
+  .trk{position:absolute;height:20px;border-radius:10px;background:#E3E5EC}
+  .ind{position:absolute;left:0;top:0;height:20px;border-radius:10px;background:#F37320}
+  .knob{position:absolute;top:-6px;width:32px;height:32px;border-radius:16px;box-sizing:border-box;background:#FFFFFF;border:4px solid #606682}
+</style>
+</head>
+<body>
+<div style="position:relative;width:480px;height:480px;background:#FFFFFF;overflow:hidden;box-sizing:border-box">
+
+  <!-- ===== Яркость экрана днём / ночью: значения хранит панель, синхронно с HA ===== -->
+  <div class="card" style="left:12px;top:12px;width:456px;height:140px">
+    <div class="ab mut" style="left:18px;top:12px;font-size:17px;line-height:22px">Яркость экрана</div>
+    <svg class="ab" style="left:16px;top:49px" width="26" height="26" viewBox="0 0 24 24" aria-hidden="true"><path fill="#F37320" d="M12,7A5,5 0 0,1 17,12A5,5 0 0,1 12,17A5,5 0 0,1 7,12A5,5 0 0,1 12,7M12,9A3,3 0 0,0 9,12A3,3 0 0,0 12,15A3,3 0 0,0 15,12A3,3 0 0,0 12,9M12,2L14.39,5.42C13.65,5.15 12.84,5 12,5C11.16,5 10.35,5.15 9.61,5.42L12,2M3.34,7L7.5,6.65C6.9,7.16 6.36,7.78 5.94,8.5C5.5,9.24 5.25,10 5.11,10.79L3.34,7M3.36,17L5.12,13.23C5.26,14 5.53,14.78 5.95,15.5C6.37,16.24 6.91,16.86 7.5,17.37L3.36,17M20.65,7L18.88,10.79C18.74,10 18.47,9.23 18.05,8.5C17.63,7.78 17.1,7.15 16.5,6.64L20.65,7M20.64,17L16.5,17.36C17.09,16.85 17.62,16.22 18.04,15.5C18.46,14.77 18.73,14 18.87,13.21L20.64,17M12,22L9.59,18.56C10.33,18.83 11.14,19 12,19C12.82,19 13.63,18.83 14.37,18.56L12,22Z"/></svg>
+    <div class="ab fg" style="left:52px;top:50px;font-size:19px;line-height:24px">Днём</div>
+    <div class="trk" style="left:136px;top:52px;width:216px"><div class="ind" style="width:216px"></div><div class="knob" style="left:200px"></div></div>
+    <div class="ab u fg" style="left:372px;top:48px;width:68px;text-align:right;font-size:20px;line-height:28px">100%</div>
+    <svg class="ab" style="left:16px;top:95px" width="26" height="26" viewBox="0 0 24 24" aria-hidden="true"><path fill="#606682" d="M17.75,4.09L15.22,6.03L16.13,9.09L13.5,7.28L10.87,9.09L11.78,6.03L9.25,4.09L12.44,4L13.5,1L14.56,4L17.75,4.09M21.25,11L19.61,12.25L20.2,14.23L18.5,13.06L16.8,14.23L17.39,12.25L15.75,11L17.81,10.95L18.5,9L19.19,10.95L21.25,11M18.97,15.95C19.8,15.87 20.69,17.05 20.16,17.8C19.84,18.25 19.5,18.67 19.08,19.07C15.17,23 8.84,23 4.94,19.07C1.03,15.17 1.03,8.83 4.94,4.93C5.34,4.53 5.76,4.17 6.21,3.85C6.96,3.32 8.14,4.21 8.06,5.04C7.79,7.9 8.75,10.87 10.95,13.06C13.14,15.26 16.1,16.22 18.97,15.95M17.33,17.97C14.5,17.81 11.7,16.64 9.53,14.5C7.36,12.31 6.2,9.5 6.04,6.68C3.23,9.82 3.34,14.64 6.35,17.66C9.37,20.67 14.19,20.78 17.33,17.97Z"/></svg>
+    <div class="ab fg" style="left:52px;top:96px;font-size:19px;line-height:24px">Ночью</div>
+    <div class="trk" style="left:136px;top:98px;width:216px"><div class="ind" style="width:102px"></div><div class="knob" style="left:86px"></div></div>
+    <div class="ab u fg" style="left:372px;top:94px;width:68px;text-align:right;font-size:20px;line-height:28px">50%</div>
+  </div>
+
+  <!-- ===== Режим сейчас: сам по солнцу (−3°), можно выбрать вручную ===== -->
+  <div class="card" style="left:12px;top:164px;width:456px;height:64px">
+    <div class="ab fg" style="left:18px;top:9px;font-size:19px;line-height:24px">Режим</div>
+    <div class="ab mut" style="left:18px;top:33px;font-size:16px;line-height:20px">сам по солнцу, −3°</div>
+    <button class="seg seg-on" style="left:216px;width:110px"><svg width="26" height="26" viewBox="0 0 24 24" aria-hidden="true"><path fill="#FFFFFF" d="M12,7A5,5 0 0,1 17,12A5,5 0 0,1 12,17A5,5 0 0,1 7,12A5,5 0 0,1 12,7M12,9A3,3 0 0,0 9,12A3,3 0 0,0 12,15A3,3 0 0,0 15,12A3,3 0 0,0 12,9M12,2L14.39,5.42C13.65,5.15 12.84,5 12,5C11.16,5 10.35,5.15 9.61,5.42L12,2M3.34,7L7.5,6.65C6.9,7.16 6.36,7.78 5.94,8.5C5.5,9.24 5.25,10 5.11,10.79L3.34,7M3.36,17L5.12,13.23C5.26,14 5.53,14.78 5.95,15.5C6.37,16.24 6.91,16.86 7.5,17.37L3.36,17M20.65,7L18.88,10.79C18.74,10 18.47,9.23 18.05,8.5C17.63,7.78 17.1,7.15 16.5,6.64L20.65,7M20.64,17L16.5,17.36C17.09,16.85 17.62,16.22 18.04,15.5C18.46,14.77 18.73,14 18.87,13.21L20.64,17M12,22L9.59,18.56C10.33,18.83 11.14,19 12,19C12.82,19 13.63,18.83 14.37,18.56L12,22Z"/></svg><span>День</span></button>
+    <button class="seg" style="left:334px;width:110px"><svg width="26" height="26" viewBox="0 0 24 24" aria-hidden="true"><path fill="#606682" d="M17.75,4.09L15.22,6.03L16.13,9.09L13.5,7.28L10.87,9.09L11.78,6.03L9.25,4.09L12.44,4L13.5,1L14.56,4L17.75,4.09M21.25,11L19.61,12.25L20.2,14.23L18.5,13.06L16.8,14.23L17.39,12.25L15.75,11L17.81,10.95L18.5,9L19.19,10.95L21.25,11M18.97,15.95C19.8,15.87 20.69,17.05 20.16,17.8C19.84,18.25 19.5,18.67 19.08,19.07C15.17,23 8.84,23 4.94,19.07C1.03,15.17 1.03,8.83 4.94,4.93C5.34,4.53 5.76,4.17 6.21,3.85C6.96,3.32 8.14,4.21 8.06,5.04C7.79,7.9 8.75,10.87 10.95,13.06C13.14,15.26 16.1,16.22 18.97,15.95M17.33,17.97C14.5,17.81 11.7,16.64 9.53,14.5C7.36,12.31 6.2,9.5 6.04,6.68C3.23,9.82 3.34,14.64 6.35,17.66C9.37,20.67 14.19,20.78 17.33,17.97Z"/></svg><span>Ночь</span></button>
+  </div>
+
+  <!-- ===== Возврат на главную без касаний ===== -->
+  <div class="card" style="left:12px;top:240px;width:456px;height:64px">
+    <div class="ab fg" style="left:18px;top:9px;font-size:19px;line-height:24px">На главную</div>
+    <div class="ab mut" style="left:18px;top:33px;font-size:16px;line-height:20px">без касаний</div>
+    <button class="seg" style="left:150px;width:69px"><span>1 мин</span></button>
+    <button class="seg seg-on" style="left:225px;width:69px"><span>2 мин</span></button>
+    <button class="seg" style="left:300px;width:69px"><span>5 мин</span></button>
+    <button class="seg" style="left:375px;width:69px"><span>Выкл</span></button>
+  </div>
+
+  <!-- ===== Гашение экрана без движения (таймер в HA берёт значение отсюда) ===== -->
+  <div class="card" style="left:12px;top:316px;width:456px;height:64px">
+    <div class="ab fg" style="left:18px;top:9px;font-size:19px;line-height:24px">Экран гаснет</div>
+    <div class="ab mut" style="left:18px;top:33px;font-size:16px;line-height:20px">без движения</div>
+    <button class="seg" style="left:150px;width:69px"><span>5 мин</span></button>
+    <button class="seg seg-on" style="left:225px;width:69px"><span>10 мин</span></button>
+    <button class="seg" style="left:300px;width:69px"><span>15 мин</span></button>
+    <button class="seg" style="left:375px;width:69px"><span>30 мин</span></button>
+  </div>
+
+  <!-- ===== Служебное: Wi-Fi и IP ===== -->
+  <div class="card" style="left:12px;top:392px;width:336px;height:76px">
+    <svg class="ab" style="left:16px;top:15px" width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><path fill="#606682" d="M12,21L15.6,16.2C14.6,15.45 13.35,15 12,15C10.65,15 9.4,15.45 8.4,16.2L12,21M12,3C7.95,3 4.21,4.34 1.2,6.6L3,9C5.5,7.12 8.62,6 12,6C15.38,6 18.5,7.12 21,9L22.8,6.6C19.79,4.34 16.05,3 12,3M12,9C9.3,9 6.81,9.89 4.8,11.4L6.6,13.8C8.1,12.67 9.97,12 12,12C14.03,12 15.9,12.67 17.4,13.8L19.2,11.4C17.19,9.89 14.7,9 12,9Z"/></svg>
+    <div class="ab fg" style="left:44px;top:13px;font-size:17px;line-height:22px">my_wifi</div>
+    <div class="ab mut" style="left:252px;top:13px;width:66px;text-align:right;font-size:17px;line-height:22px">74%</div>
+    <svg class="ab" style="left:16px;top:45px" width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><path fill="#606682" d="M16,4H8V2H16V4M20,6V18A2,2 0 0,1 18,20H6A2,2 0 0,1 4,18V6A2,2 0 0,1 6,4H18A2,2 0 0,1 20,6M14,10H12V8H10V16H12V12H14A2,2 0 0,0 16,10A2,2 0 0,0 14,8M14,10V8H12V10H14Z"/></svg>
+    <div class="ab fg" style="left:44px;top:43px;font-size:17px;line-height:22px">192.168.1.50</div>
+  </div>
+
+  <!-- ===== Возврат на главную (таб-бара на этом экране нет) ===== -->
+  <a class="key" href="main.html" style="left:360px;top:392px;width:108px;height:76px">
+    <svg width="26" height="26" viewBox="0 0 24 24" aria-hidden="true"><path fill="#606682" d="M10,20V14H14V20H19V12H22L12,3L2,12H5V20H10Z"/></svg>
+    <span>Главная</span>
+  </a>
+
+</div>
+</body>
+</html>

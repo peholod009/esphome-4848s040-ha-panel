@@ -23,7 +23,7 @@ https://github.com/agillis/esphome-modular-lvgl-buttons.
 Порядок работы:
 
 1. Склонируй репозиторий и прочитай README.md, home-assistant/README.md,
-   tools/README.md и шапку tools/gen_panel.py (там правила переноса макета
+   tools/README.md, design/README.md (+ макеты design/*.html) и шапку tools/gen_panel.py (там правила переноса макета
    в LVGL). Не начинай менять файлы, пока не прочитал.
 
 2. Задай мне вопросы — коротко, списком, одним сообщением:
@@ -85,7 +85,7 @@ https://github.com/agillis/esphome-modular-lvgl-buttons.
 ### Советы
 
 * Хочешь поменять внешний вид — сначала попроси LLM нарисовать макет
-  (HTML 480×480 по образцу `docs/screenshots/`), согласуй его, и только потом
+  (HTML 480×480 по образцу `design/*.html`), согласуй его, и только потом
   переносить в генератор. Так дешевле переделывать.
 * Просишь новую функцию — пусть LLM сначала проверит, нет ли готового пакета
   в библиотеке esphome-modular-lvgl-buttons.

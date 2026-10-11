@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Панель «Сарай» — макеты</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@600;800&amp;display=swap">
+<style>
+  :root{--bg:#E9ECF3;--fg:#212121;--mut:#606682}
+  body{margin:0;padding:24px 16px;background:var(--bg);color:var(--fg);font-family:"Nunito",system-ui,sans-serif;font-weight:600}
+  h1{margin:0 0 4px;font-weight:800;font-size:24px}
+  p{margin:0 0 20px;color:var(--mut);max-width:760px}
+  .grid{display:flex;flex-wrap:wrap;gap:20px}
+  figure{margin:0}
+  figcaption{margin-top:6px;font-size:15px}
+  figcaption a{color:var(--mut)}
+  iframe{display:block;width:480px;height:480px;border:0;border-radius:12px;background:#fff;box-shadow:0 1px 4px rgba(0,0,0,.08)}
+  @media (max-width:520px){iframe{width:calc(100vw - 32px);height:calc(100vw - 32px)}}
+</style>
+</head>
+<body>
+<h1>Панель «Сарай» — макеты 480×480</h1>
+<p>Каждый экран — отдельный HTML 480×480 с абсолютными координатами в пикселях, ровно как на панели.
+Вкладки внутри макетов кликабельны. Прошивка сгенерирована из этих макетов (tools/gen_panel.py).</p>
+<div class="grid">
+  <figure><iframe src="main.html" title="Главная"></iframe><figcaption>Главная · <a href="main.html">открыть</a></figcaption></figure>
+  <figure><iframe src="light.html" title="Сарай"></iframe><figcaption>Сарай · <a href="light.html">открыть</a></figcaption></figure>
+  <figure><iframe src="yard.html" title="Двор"></iframe><figcaption>Двор · <a href="yard.html">открыть</a></figcaption></figure>
+  <figure><iframe src="music.html" title="Музыка"></iframe><figcaption>Музыка · <a href="music.html">открыть</a></figcaption></figure>
+  <figure><iframe src="settings.html" title="Настройки"></iframe><figcaption>Настройки · <a href="settings.html">открыть</a></figcaption></figure>
+</div>
+</body>
+</html>

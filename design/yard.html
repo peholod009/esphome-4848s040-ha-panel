@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=480">
+<title>Сарай — Свет во дворе</title>
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@600;800&amp;display=swap">
+<style>
+  body{margin:0;background:#FFFFFF;font-family:"Nunito",system-ui,sans-serif;font-weight:600}
+  .u{font-weight:800}
+  .ab{position:absolute}
+  .fg{color:#212121}
+  .mut{color:#606682}
+  .on-txt{color:#B4500E}
+  /* компактная плитка-выключатель 222×63: лампа слева, название сверху, состояние + тумблер снизу */
+  .yt{position:absolute;box-sizing:border-box;width:222px;height:70px;border-radius:20px;cursor:pointer;padding:0;font:inherit;text-align:left;color:#212121}
+  .yt-on{background:#FDECD9;border:2px solid #F37320;border-bottom:6px solid #C85A12}
+  .yt-off{background:linear-gradient(180deg,#F7F7FB 0%,#E8EBF4 100%);border:2px solid #C7CCDE;border-bottom:6px solid #A9AFC4}
+  .name{position:absolute;left:54px;top:8px;font-size:20px;line-height:24px;white-space:nowrap}
+  .state{position:absolute;left:54px;top:34px;font-size:16px;line-height:20px;letter-spacing:.5px}
+  .sw{position:absolute;left:164px;top:33px;width:40px;height:22px;border-radius:11px;box-sizing:border-box}
+  .sw-on{background:#F37320}
+  .sw-on i{position:absolute;left:21px;top:3px;width:16px;height:16px;border-radius:8px;background:#FFFFFF}
+  .sw-off{background:#E3E5EC;border:2px solid #C7CCDE}
+  .sw-off i{position:absolute;left:2px;top:2px;width:14px;height:14px;border-radius:7px;background:#FFFFFF;box-shadow:0 1px 2px rgba(0,0,0,.25)}
+  .tab{position:absolute;top:400px;width:108px;height:68px;box-sizing:border-box;border-radius:20px;text-decoration:none;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;font-size:17px;cursor:pointer}
+  .tab-off{background:linear-gradient(180deg,#F7F7FB 0%,#E8EBF4 100%);border:2px solid #C7CCDE;border-bottom:6px solid #A9AFC4;color:#212121}
+  .tab-on{top:404px;height:64px;background:#606682;border:2px solid #606682;color:#FFFFFF}
+</style>
+</head>
+<body>
+<div style="position:relative;width:480px;height:480px;background:#FFFFFF;overflow:hidden;box-sizing:border-box">
+
+  <!-- ===== 10 плиток 222×70 на всю высоту (заголовок не нужен — видно по вкладке «Двор») ===== -->
+  <button class="yt yt-off" aria-label="Свет средний: выключен" style="left:12px;top:12px">
+    <svg class="ab" style="left:12px;top:16px" width="30" height="30" viewBox="0 0 24 24" aria-hidden="true"><path fill="#606682" d="M12,2A7,7 0 0,1 19,9C19,11.38 17.81,13.47 16,14.74V17A1,1 0 0,1 15,18H9A1,1 0 0,1 8,17V14.74C6.19,13.47 5,11.38 5,9A7,7 0 0,1 12,2M9,21V20H15V21A1,1 0 0,1 14,22H10A1,1 0 0,1 9,21M12,4A5,5 0 0,0 7,9C7,11.05 8.230,12.81 10,13.58V16H14V13.58C15.77,12.81 17,11.05 17,9A5,5 0 0,0 12,4Z"></path></svg>
+    <span class="name">Свет средний</span>
+    <span class="state mut">выкл</span>
+    <span class="sw sw-off"><i></i></span>
+  </button>
+  <button class="yt yt-off" aria-label="Свет основные: выключен" style="left:246px;top:12px">
+    <svg class="ab" style="left:12px;top:16px" width="30" height="30" viewBox="0 0 24 24" aria-hidden="true"><path fill="#606682" d="M12,2A7,7 0 0,1 19,9C19,11.38 17.81,13.47 16,14.74V17A1,1 0 0,1 15,18H9A1,1 0 0,1 8,17V14.74C6.19,13.47 5,11.38 5,9A7,7 0 0,1 12,2M9,21V20H15V21A1,1 0 0,1 14,22H10A1,1 0 0,1 9,21M12,4A5,5 0 0,0 7,9C7,11.05 8.230,12.81 10,13.58V16H14V13.58C15.77,12.81 17,11.05 17,9A5,5 0 0,0 12,4Z"></path></svg>
+    <span class="name">Свет основные</span>
+    <span class="state mut">выкл</span>
+    <span class="sw sw-off"><i></i></span>
+  </button>
+  <button class="yt yt-on" aria-label="Крыльцо: включён" style="left:12px;top:88px">
+    <svg class="ab" style="left:12px;top:16px" width="30" height="30" viewBox="0 0 24 24" aria-hidden="true"><path fill="#F37320" d="M12,2A7,7 0 0,0 5,9C5,11.38 6.19,13.47 8,14.74V17A1,1 0 0,0 9,18H15A1,1 0 0,0 16,17V14.74C17.81,13.47 19,11.38 19,9A7,7 0 0,0 12,2M9,21A1,1 0 0,0 10,22H14A1,1 0 0,0 15,21V20H9V21Z"></path></svg>
+    <span class="name">Крыльцо</span>
+    <span class="state u on-txt">ВКЛ</span>
+    <span class="sw sw-on"><i></i></span>
+  </button>
+  <button class="yt yt-on" aria-label="Калитка: включён" style="left:246px;top:88px">
+    <svg class="ab" style="left:12px;top:16px" width="30" height="30" viewBox="0 0 24 24" aria-hidden="true"><path fill="#F37320" d="M12,2A7,7 0 0,0 5,9C5,11.38 6.19,13.47 8,14.74V17A1,1 0 0,0 9,18H15A1,1 0 0,0 16,17V14.74C17.81,13.47 19,11.38 19,9A7,7 0 0,0 12,2M9,21A1,1 0 0,0 10,22H14A1,1 0 0,0 15,21V20H9V21Z"></path></svg>
+    <span class="name">Калитка</span>
+    <span class="state u on-txt">ВКЛ</span>
+    <span class="sw sw-on"><i></i></span>
+  </button>
+  <button class="yt yt-off" aria-label="Торец: выключен" style="left:12px;top:164px">
+    <svg class="ab" style="left:12px;top:16px" width="30" height="30" viewBox="0 0 24 24" aria-hidden="true"><path fill="#606682" d="M12,2A7,7 0 0,1 19,9C19,11.38 17.81,13.47 16,14.74V17A1,1 0 0,1 15,18H9A1,1 0 0,1 8,17V14.74C6.19,13.47 5,11.38 5,9A7,7 0 0,1 12,2M9,21V20H15V21A1,1 0 0,1 14,22H10A1,1 0 0,1 9,21M12,4A5,5 0 0,0 7,9C7,11.05 8.230,12.81 10,13.58V16H14V13.58C15.77,12.81 17,11.05 17,9A5,5 0 0,0 12,4Z"></path></svg>
+    <span class="name">Торец</span>
+    <span class="state mut">выкл</span>
+    <span class="sw sw-off"><i></i></span>
+  </button>
+  <button class="yt yt-off" aria-label="Валя: выключен" style="left:246px;top:164px">
+    <svg class="ab" style="left:12px;top:16px" width="30" height="30" viewBox="0 0 24 24" aria-hidden="true"><path fill="#606682" d="M12,2A7,7 0 0,1 19,9C19,11.38 17.81,13.47 16,14.74V17A1,1 0 0,1 15,18H9A1,1 0 0,1 8,17V14.74C6.19,13.47 5,11.38 5,9A7,7 0 0,1 12,2M9,21V20H15V21A1,1 0 0,1 14,22H10A1,1 0 0,1 9,21M12,4A5,5 0 0,0 7,9C7,11.05 8.230,12.81 10,13.58V16H14V13.58C15.77,12.81 17,11.05 17,9A5,5 0 0,0 12,4Z"></path></svg>
+    <span class="name">Валя</span>
+    <span class="state mut">выкл</span>
+    <span class="sw sw-off"><i></i></span>
+  </button>
+  <button class="yt yt-off" aria-label="Площадка: выключен" style="left:12px;top:241px">
+    <svg class="ab" style="left:12px;top:16px" width="30" height="30" viewBox="0 0 24 24" aria-hidden="true"><path fill="#606682" d="M12,2A7,7 0 0,1 19,9C19,11.38 17.81,13.47 16,14.74V17A1,1 0 0,1 15,18H9A1,1 0 0,1 8,17V14.74C6.19,13.47 5,11.38 5,9A7,7 0 0,1 12,2M9,21V20H15V21A1,1 0 0,1 14,22H10A1,1 0 0,1 9,21M12,4A5,5 0 0,0 7,9C7,11.05 8.230,12.81 10,13.58V16H14V13.58C15.77,12.81 17,11.05 17,9A5,5 0 0,0 12,4Z"></path></svg>
+    <span class="name">Площадка</span>
+    <span class="state mut">выкл</span>
+    <span class="sw sw-off"><i></i></span>
+  </button>
+  <button class="yt yt-off" aria-label="Веранда: выключен" style="left:246px;top:241px">
+    <svg class="ab" style="left:12px;top:16px" width="30" height="30" viewBox="0 0 24 24" aria-hidden="true"><path fill="#606682" d="M12,2A7,7 0 0,1 19,9C19,11.38 17.81,13.47 16,14.74V17A1,1 0 0,1 15,18H9A1,1 0 0,1 8,17V14.74C6.19,13.47 5,11.38 5,9A7,7 0 0,1 12,2M9,21V20H15V21A1,1 0 0,1 14,22H10A1,1 0 0,1 9,21M12,4A5,5 0 0,0 7,9C7,11.05 8.230,12.81 10,13.58V16H14V13.58C15.77,12.81 17,11.05 17,9A5,5 0 0,0 12,4Z"></path></svg>
+    <span class="name">Веранда</span>
+    <span class="state mut">выкл</span>
+    <span class="sw sw-off"><i></i></span>
+  </button>
+  <button class="yt yt-off" aria-label="Туалет внутри: выключен" style="left:12px;top:318px">
+    <svg class="ab" style="left:12px;top:16px" width="30" height="30" viewBox="0 0 24 24" aria-hidden="true"><path fill="#606682" d="M12,2A7,7 0 0,1 19,9C19,11.38 17.81,13.47 16,14.74V17A1,1 0 0,1 15,18H9A1,1 0 0,1 8,17V14.74C6.19,13.47 5,11.38 5,9A7,7 0 0,1 12,2M9,21V20H15V21A1,1 0 0,1 14,22H10A1,1 0 0,1 9,21M12,4A5,5 0 0,0 7,9C7,11.05 8.230,12.81 10,13.58V16H14V13.58C15.77,12.81 17,11.05 17,9A5,5 0 0,0 12,4Z"></path></svg>
+    <span class="name">Туалет внутри</span>
+    <span class="state mut">выкл</span>
+    <span class="sw sw-off"><i></i></span>
+  </button>
+  <button class="yt yt-off" aria-label="Туалет снаружи: выключен" style="left:246px;top:318px">
+    <svg class="ab" style="left:12px;top:16px" width="30" height="30" viewBox="0 0 24 24" aria-hidden="true"><path fill="#606682" d="M12,2A7,7 0 0,1 19,9C19,11.38 17.81,13.47 16,14.74V17A1,1 0 0,1 15,18H9A1,1 0 0,1 8,17V14.74C6.19,13.47 5,11.38 5,9A7,7 0 0,1 12,2M9,21V20H15V21A1,1 0 0,1 14,22H10A1,1 0 0,1 9,21M12,4A5,5 0 0,0 7,9C7,11.05 8.230,12.81 10,13.58V16H14V13.58C15.77,12.81 17,11.05 17,9A5,5 0 0,0 12,4Z"></path></svg>
+    <span class="name">Туалет снаружи</span>
+    <span class="state mut">выкл</span>
+    <span class="sw sw-off"><i></i></span>
+  </button>
+
+  <!-- ===== Таб-бар: 4 вкладки, иконка + подпись всегда ===== -->
+  <a class="tab tab-off" href="main.html" style="left:12px">
+    <svg width="26" height="26" viewBox="0 0 24 24" aria-hidden="true"><path fill="#606682" d="M10,20V14H14V20H19V12H22L12,3L2,12H5V20H10Z"></path></svg>
+    <span>Главная</span>
+  </a>
+  <a class="tab tab-off" href="light.html" style="left:128px">
+    <svg width="26" height="26" viewBox="0 0 24 24" aria-hidden="true"><path fill="#F37320" d="M12,2A7,7 0 0,0 5,9C5,11.38 6.19,13.47 8,14.74V17A1,1 0 0,0 9,18H15A1,1 0 0,0 16,17V14.74C17.81,13.47 19,11.38 19,9A7,7 0 0,0 12,2M9,21A1,1 0 0,0 10,22H14A1,1 0 0,0 15,21V20H9V21Z"></path></svg>
+    <span>Сарай</span>
+  </a>
+  <a class="tab tab-on" href="yard.html" style="left:244px" aria-current="page">
+    <svg width="26" height="26" viewBox="0 0 24 24" aria-hidden="true"><path fill="#FFFFFF" d="M14.015625 3.0 12.984375 0.984375H11.015625L9.984375 3.0L5.015625 6.0H6.984375L8.015625 14.015625L9.984375 15.984375L10.5 17.015625H9.0V23.015625H15.0V17.015625H13.5L14.015625 15.984375L15.984375 14.015625L17.015625 6.0H18.984375ZM14.15625 12.984375H9.84375L9.0 6.0H15.0Z"></path></svg>
+    <span>Двор</span>
+  </a>
+  <a class="tab tab-off" href="music.html" style="left:360px">
+    <svg width="26" height="26" viewBox="0 0 24 24" aria-hidden="true"><path fill="#F37320" d="M21,3V15.5A3.5,3.5 0 0,1 17.5,19A3.5,3.5 0 0,1 14,15.5A3.5,3.5 0 0,1 17.5,12C18.04,12 18.55,12.12 19,12.34V6.47L9,8.6V17.5A3.5,3.5 0 0,1 5.5,21A3.5,3.5 0 0,1 2,17.5A3.5,3.5 0 0,1 5.5,14C6.04,14 6.55,14.12 7,14.34V6L21,3Z"></path></svg>
+    <span>Музыка</span>
+  </a>
+
+</div>
+</body>
+</html>

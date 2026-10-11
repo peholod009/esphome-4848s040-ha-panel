@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=480">
+<title>Сарай — Музыка</title>
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@600;800&amp;display=swap">
+<style>
+  body{margin:0;background:#FFFFFF;font-family:"Nunito",system-ui,sans-serif;font-weight:600}
+  .u{font-weight:800}
+  .ab{position:absolute}
+  .card{position:absolute;box-sizing:border-box;border-radius:22px;background:#F3F4F8}
+  .fg{color:#212121}
+  .mut{color:#606682}
+  .key{position:absolute;box-sizing:border-box;border-radius:22px;background:linear-gradient(180deg,#F7F7FB 0%,#E8EBF4 100%);border:2px solid #C7CCDE;border-bottom:6px solid #A9AFC4;cursor:pointer;padding:0;font:inherit;color:#212121;display:flex;align-items:center;justify-content:center}
+  .tab{position:absolute;top:400px;width:108px;height:68px;box-sizing:border-box;border-radius:20px;text-decoration:none;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;font-size:17px;cursor:pointer}
+  .tab-off{background:linear-gradient(180deg,#F7F7FB 0%,#E8EBF4 100%);border:2px solid #C7CCDE;border-bottom:6px solid #A9AFC4;color:#212121}
+  .tab-on{top:404px;height:64px;background:#606682;border:2px solid #606682;color:#FFFFFF}
+</style>
+</head>
+<body>
+<div style="position:relative;width:480px;height:480px;background:#FFFFFF;overflow:hidden;box-sizing:border-box">
+
+  <!-- ===== Сейчас играет (показание) | вход в «Настройки» ===== -->
+  <div class="card" style="left:12px;top:12px;width:336px;height:88px;background:linear-gradient(90deg,#FDECD9 0%,#F3F4F8 100%)">
+    <svg class="ab" style="left:18px;top:15px" width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><rect x="1" y="6" width="3" height="10" rx="1" fill="#F37320"/><rect x="6.5" y="1" width="3" height="15" rx="1" fill="#F37320"/><rect x="12" y="9" width="3" height="7" rx="1" fill="#F37320"/></svg>
+    <div class="ab" style="left:40px;top:12px;font-size:16px;line-height:20px;color:#B4500E">Играет · Сарай</div>
+    <div class="ab u fg" style="left:18px;top:40px;width:300px;font-size:26px;line-height:32px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">It's A Beautiful Day</div>
+  </div>
+  <a class="tab tab-off" href="settings.html" style="left:360px;top:22px">
+    <svg width="26" height="26" viewBox="0 0 24 24" aria-hidden="true"><path fill="#606682" d="M12 15.5A3.5 3.5 0 0 1 8.5 12 3.5 3.5 0 0 1 12 8.5a3.5 3.5 0 0 1 3.5 3.5 3.5 3.5 0 0 1-3.5 3.5m7.43-2.53c.04-.32.07-.64.07-.97s-.03-.66-.07-1l2.11-1.63c.19-.15.24-.42.12-.64l-2-3.46c-.12-.22-.39-.31-.61-.22l-2.49 1c-.52-.39-1.06-.73-1.69-.98l-.37-2.65A.506.506 0 0 0 14 2h-4c-.25 0-.46.18-.5.42l-.37 2.65c-.63.25-1.17.59-1.69.98l-2.490-1c-.22-.09-.49 0-.61.22l-2 3.46c-.13.22-.07.49.12.64L4.57 11c-.04.34-.07.67-.07 1s.03.65.07.97l-2.11 1.66c-.19.15-.25.42-.12.64l2 3.46c.12.22.39.3.61.22l2.49-1.01c.52.4 1.06.74 1.69.99l.37 2.65c.04.24.25.42.5.42h4c.25 0 .46-.18.5-.42l.37-2.65c.63-.26 1.17-.59 1.69-.99l2.49 1.01c.22.08.49 0 .61-.22l2-3.46c.12-.22.07-.49-.12-.64z"/></svg>
+    <span>Настройки</span>
+  </a>
+
+  <!-- ===== Транспорт (компактнее): назад / пауза / вперёд ===== -->
+  <button class="key" aria-label="Предыдущий трек" style="left:76px;top:116px;width:88px;height:66px"><svg width="32" height="32" viewBox="0 0 24 24" aria-hidden="true"><path fill="#606682" d="M6 18V6h2v12zm3.5-6L18 6v12z"/></svg></button>
+  <button class="key" aria-label="Пауза" style="left:180px;top:112px;width:120px;height:74px;border-radius:24px;background:#F37320;border-color:#F37320;border-bottom:8px solid #C85A12"><svg width="40" height="40" viewBox="0 0 24 24" aria-hidden="true"><path fill="#FFFFFF" d="M14 19h4V5h-4M6 19h4V5H6z"/></svg></button>
+  <button class="key" aria-label="Следующий трек" style="left:316px;top:116px;width:88px;height:66px"><svg width="32" height="32" viewBox="0 0 24 24" aria-hidden="true"><path fill="#606682" d="M16 18h2V6h-2M6 18l8.5-6L6 6z"/></svg></button>
+
+  <!-- ===== Громкость (компактнее) ===== -->
+  <div class="card" style="left:12px;top:198px;width:456px;height:58px">
+    <svg class="ab" style="left:16px;top:16px" width="26" height="26" viewBox="0 0 24 24" aria-hidden="true"><path fill="#606682" d="M14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.84-5 6.7v2.07c4-.91 7-4.49 7-8.77s-3-7.86-7-8.77M16.5 12c0-1.77-1-3.29-2.5-4.03V16c1.5-.71 2.5-2.24 2.5-4M3 9v6h4l5 5V4L7 9z"/></svg>
+    <div class="ab" style="left:58px;top:17px;width:300px;height:24px;border-radius:12px;background:#E3E5EC">
+      <div class="ab" style="left:0;top:0;width:150px;height:24px;border-radius:12px;background:#F37320"></div>
+      <div class="ab" style="left:132px;top:-6px;width:36px;height:36px;border-radius:18px;box-sizing:border-box;background:#FFFFFF;border:4px solid #606682"></div>
+    </div>
+    <div class="ab u fg" style="left:366px;top:13px;width:74px;text-align:right;font-size:24px;line-height:32px">50%</div>
+  </div>
+
+  <!-- ===== Быстрый запуск: радио (из Music Assistant → Radio) и плейлисты Яндекс Музыки ===== -->
+  <button class="key" style="left:12px;top:268px;width:222px;height:56px;justify-content:flex-start;gap:12px;padding:0 14px">
+    <svg style="flex:none" width="28" height="28" viewBox="0 0 24 24" aria-hidden="true"><path fill="#F37320" d="M20 6a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V8c0-.85.53-1.58 1.28-1.87L15.71 1l.76 1.830L8.83 6zm0 2H4v4h12v-2h2v2h2zM7 14a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3"/></svg>
+    <span style="display:flex;flex-direction:column;align-items:flex-start;text-align:left">
+      <span style="font-size:18px;line-height:21px">Русское радио</span>
+      <span class="mut" style="font-size:14px;line-height:17px">радио</span>
+    </span>
+  </button>
+  <button class="key" style="left:246px;top:268px;width:222px;height:56px;justify-content:flex-start;gap:12px;padding:0 14px">
+    <svg style="flex:none" width="28" height="28" viewBox="0 0 24 24" aria-hidden="true"><path fill="#F37320" d="M20 6a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V8c0-.85.53-1.58 1.28-1.87L15.71 1l.76 1.830L8.83 6zm0 2H4v4h12v-2h2v2h2zM7 14a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3"/></svg>
+    <span style="display:flex;flex-direction:column;align-items:flex-start;text-align:left">
+      <span style="font-size:18px;line-height:21px">Авторадио</span>
+      <span class="mut" style="font-size:14px;line-height:17px">радио</span>
+    </span>
+  </button>
+  <button class="key" style="left:12px;top:332px;width:222px;height:56px;justify-content:flex-start;gap:12px;padding:0 14px">
+    <span style="flex:none;width:34px;height:34px;border-radius:17px;background:#F37320;display:flex;align-items:center;justify-content:center"><svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><path fill="#FFFFFF" d="m12 21.35-1.45-1.32C5.4 15.36 2 12.27 2 8.5 2 5.41 4.42 3 7.5 3c1.74 0 3.410.81 4.5 2.08C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.41 22 8.5c0 3.77-3.4 6.86-8.55 11.53z"/></svg></span>
+    <span style="display:flex;flex-direction:column;align-items:flex-start;text-align:left">
+      <span style="font-size:18px;line-height:21px">Мне нравится</span>
+      <span class="mut" style="font-size:14px;line-height:17px">Яндекс Музыка</span>
+    </span>
+  </button>
+  <button class="key" style="left:246px;top:332px;width:222px;height:56px;justify-content:flex-start;gap:12px;padding:0 14px">
+    <span style="flex:none;width:34px;height:34px;border-radius:17px;background:#F37320;display:flex;align-items:center;justify-content:center"><svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><path fill="#FFFFFF" d="m22 12-2 1-1 1-1-1-1 3-1-3-1 8-1-8-1 2-1-2-1 4-1-4-1 9-1-9-1 6-1-6-1 1-1-1-2-1 2-1 1-1 1 1 1-6 1 6 1-9 1 9 1-4 1 4 1-2 1 2 1-8 1 8 1-3 1 3 1-1 1 1z"/></svg></span>
+    <span style="display:flex;flex-direction:column;align-items:flex-start;text-align:left">
+      <span style="font-size:18px;line-height:21px">Моя волна</span>
+      <span class="mut" style="font-size:14px;line-height:17px">Яндекс Музыка</span>
+    </span>
+  </button>
+
+  <!-- ===== Таб-бар ===== -->
+  <a class="tab tab-off" href="main.html" style="left:12px">
+    <svg width="26" height="26" viewBox="0 0 24 24" aria-hidden="true"><path fill="#606682" d="M10,20V14H14V20H19V12H22L12,3L2,12H5V20H10Z"/></svg>
+    <span>Главная</span>
+  </a>
+  <a class="tab tab-off" href="light.html" style="left:128px">
+    <svg width="26" height="26" viewBox="0 0 24 24" aria-hidden="true"><path fill="#F37320" d="M12,2A7,7 0 0,0 5,9C5,11.38 6.19,13.47 8,14.74V17A1,1 0 0,0 9,18H15A1,1 0 0,0 16,17V14.74C17.81,13.47 19,11.38 19,9A7,7 0 0,0 12,2M9,21A1,1 0 0,0 10,22H14A1,1 0 0,0 15,21V20H9V21Z"/></svg>
+    <span>Сарай</span>
+  </a>
+  <a class="tab tab-off" href="yard.html" style="left:244px">
+    <svg width="26" height="26" viewBox="0 0 24 24" aria-hidden="true"><path fill="#F37320" d="M14.015625 3.0 12.984375 0.984375H11.015625L9.984375 3.0L5.015625 6.0H6.984375L8.015625 14.015625L9.984375 15.984375L10.5 17.015625H9.0V23.015625H15.0V17.015625H13.5L14.015625 15.984375L15.984375 14.015625L17.015625 6.0H18.984375ZM14.15625 12.984375H9.84375L9.0 6.0H15.0Z"/></svg>
+    <span>Двор</span>
+  </a>
+  <a class="tab tab-on" href="music.html" style="left:360px" aria-current="page">
+    <svg width="26" height="26" viewBox="0 0 24 24" aria-hidden="true"><path fill="#FFFFFF" d="M21,3V15.5A3.5,3.5 0 0,1 17.5,19A3.5,3.5 0 0,1 14,15.5A3.5,3.5 0 0,1 17.5,12C18.04,12 18.55,12.12 19,12.34V6.47L9,8.6V17.5A3.5,3.5 0 0,1 5.5,21A3.5,3.5 0 0,1 2,17.5A3.5,3.5 0 0,1 5.5,14C6.04,14 6.55,14.12 7,14.34V6L21,3Z"/></svg>
+    <span>Музыка</span>
+  </a>
+
+</div>
+</body>
+</html>
