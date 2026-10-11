@@ -14,8 +14,8 @@
 | [`music.html`](music.html) | Музыка |
 | [`settings.html`](settings.html) | Настройки |
 
-**Посмотреть:** скачай папку и открой `index.html` в браузере (вкладки внутри
-макетов кликабельны). Шрифт Nunito грузится с Google Fonts — без интернета
+**Посмотреть онлайн:** [https://peholod009.github.io/esphome-4848s040-ha-panel/design/](https://peholod009.github.io/esphome-4848s040-ha-panel/design/) — или скачай папку и открой
+`index.html` в браузере (вкладки внутри макетов кликабельны). Шрифт Nunito грузится с Google Fonts — без интернета
 будет системный.
 
 ## Как пользоваться, чтобы переделать под себя
