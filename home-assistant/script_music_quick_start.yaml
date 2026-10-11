@@ -1,0 +1,68 @@
+# Скрипт для кнопок быстрого запуска на экране «Музыка».
+# Создай скрипт с id  sarai_muzyka_bystryi_zapusk  (Настройки → Скрипты → +,
+# ⋮ → Редактировать в YAML) и вставь это. Замени:
+#   - media_player.sarai — свой плеер Music Assistant
+#   - адреса в media_id (свои — через Инструменты разработчика → Действия →
+#     music_assistant.get_library, media_type: radio / playlist)
+# Панель вызывает его так:  action: script.sarai_muzyka_bystryi_zapusk, data: {preset: russkoe}
+alias: "Сарай: быстрый запуск музыки (панель)"
+description: >-
+  Один запуск за раз (повторные нажатия, пока музыка стартует, игнорируются).
+  Если за 12 с плеер не сменил трек — одна повторная попытка.
+icon: mdi:radio
+mode: single
+max_exceeded: silent
+fields:
+  preset:
+    name: Что включить
+    required: true
+    example: russkoe
+    selector:
+      select:
+        options:
+          - value: russkoe
+            label: Русское радио
+          - value: avto
+            label: Авторадио
+          - value: nravitsya
+            label: Мне нравится
+          - value: volna
+            label: Моя волна
+variables:
+  media_id: >-
+    {{ {'russkoe': 'library://radio/2',
+        'avto': 'http://185.40.31.28:8000/station_93',
+        'nravitsya': 'library://playlist/22',
+        'volna': 'library://playlist/21'}[preset] }}
+  media_type: "{{ 'playlist' if preset in ['nravitsya', 'volna'] else 'radio' }}"
+sequence:
+  - parallel:
+      # ветки стартуют одновременно: подписываемся на смену трека ДО команды
+      - sequence:
+          - wait_for_trigger:
+              - trigger: state
+                entity_id: media_player.sarai
+                attribute: media_content_id
+            timeout:
+              seconds: 12
+            continue_on_timeout: true
+          - if:
+              - condition: template
+                value_template: "{{ not wait.completed }}"
+            then:
+              - action: music_assistant.play_media
+                target:
+                  entity_id: media_player.sarai
+                data:
+                  media_id: "{{ media_id }}"
+                  media_type: "{{ media_type }}"
+                  enqueue: replace
+                continue_on_error: true
+      - action: music_assistant.play_media
+        target:
+          entity_id: media_player.sarai
+        data:
+          media_id: "{{ media_id }}"
+          media_type: "{{ media_type }}"
+          enqueue: replace
+        continue_on_error: true

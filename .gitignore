@@ -1,0 +1,5 @@
+secrets.yaml
+.esphome/
+esphome-modular-lvgl-buttons/
+*.pyc
+__pycache__/

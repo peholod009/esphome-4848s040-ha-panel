@@ -1,0 +1,50 @@
+# «Экран сарай ВЫКЛ» — гасит панель, когда таймер досчитал (или когда дома никого).
+# Если к концу таймера человек ещё в кадре / датчик держит движение — продлевает.
+# Замени id на свои (те же, что в automation_screen_on.yaml).
+alias: Экран сарай ВЫКЛ
+description: >-
+  Гасит панель, когда истёк таймер (длительность — настройка панели
+  «Экран гаснет через») или сразу, если дома никого не осталось.
+mode: single
+max_exceeded: silent
+triggers:
+  - trigger: timer.finished
+    target:
+      entity_id: timer.sarai_ekran_10_min
+    id: timer_done
+  - trigger: state
+    entity_id: binary_sensor.kto_to_doma
+    to: "off"
+    id: nobody_home
+actions:
+  - variables:
+      # 1..60 мин; если панель офлайн / сущности нет — 10 мин (одной строкой: без пробела в начале результата)
+      ekran_dlitelnost: "{% set m = [[states('number.sarai_panel_sarai_ekran_gasnet_cherez') | int(10), 1] | max, 60] | min %}{{ '%02d:%02d:00' % (m // 60, m % 60) }}"
+  - if:
+      - condition: trigger
+        id: timer_done
+      - condition: state
+        entity_id: binary_sensor.kto_to_doma
+        state: "on"
+      - condition: state
+        entity_id:
+          - binary_sensor.troitskaya_saray_motion_saray_vhod
+          - binary_sensor.troitskaya_saray_motion_saray_naves
+          - binary_sensor.saray2_person_occupancy
+        match: any
+        state: "on"
+    then:
+      - action: timer.start
+        target:
+          entity_id: timer.sarai_ekran_10_min
+        data:
+          duration: "{{ ekran_dlitelnost }}"
+      - stop: Кто-то всё ещё в сарае — продлили таймер
+  - action: timer.cancel
+    target:
+      entity_id: timer.sarai_ekran_10_min
+  # прошивка при выключении подсветки ставит LVGL на паузу:
+  # касание тёмного экрана только будит его, кнопки не нажимаются
+  - action: light.turn_off
+    target:
+      entity_id: light.panel_sarai_display_backlight

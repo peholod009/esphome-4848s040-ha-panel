@@ -1,0 +1,54 @@
+# «Экран сарай ВКЛ» — будит панель по движению и запускает таймер гашения.
+# Вставь в редактор автоматизации (⋮ → Редактировать в YAML) и замени id на свои:
+#   - датчики движения / присутствия (здесь: 2 PIR и «человек» с камеры Frigate)
+#   - binary_sensor.kto_to_doma — «кто-то дома» (можно убрать условие)
+#   - light.panel_sarai_display_backlight — подсветка твоей панели
+#   - number.sarai_panel_sarai_ekran_gasnet_cherez — настройка панели «Экран гаснет через»
+#   - timer.sarai_ekran_10_min — таймер (см. helpers.md)
+alias: Экран сарай ВКЛ
+description: >-
+  Будит панель по движению — только если кто-то дома. Каждое движение заново
+  запускает таймер на время из настройки панели «Экран гаснет через»
+  (по умолчанию 10 мин). Если подсветку включили иначе (касание тёмного экрана,
+  перезагрузка панели) — тоже запускаем таймер, чтобы экран не горел вечно.
+mode: restart
+triggers:
+  - trigger: state
+    entity_id:
+      - binary_sensor.troitskaya_saray_motion_saray_vhod
+      - binary_sensor.troitskaya_saray_motion_saray_naves
+      - binary_sensor.saray2_person_occupancy
+    to: "on"
+    id: motion
+  - trigger: state
+    entity_id: light.panel_sarai_display_backlight
+    to: "on"
+    id: screen_on
+conditions:
+  - condition: or
+    conditions:
+      - condition: trigger
+        id: screen_on
+      - condition: state
+        entity_id: binary_sensor.kto_to_doma
+        state: "on"
+actions:
+  - variables:
+      # 1..60 мин; если панель офлайн / сущности нет — 10 мин (одной строкой: без пробела в начале результата)
+      ekran_dlitelnost: "{% set m = [[states('number.sarai_panel_sarai_ekran_gasnet_cherez') | int(10), 1] | max, 60] | min %}{{ '%02d:%02d:00' % (m // 60, m % 60) }}"
+  - if:
+      - condition: trigger
+        id: motion
+      - condition: state
+        entity_id: light.panel_sarai_display_backlight
+        state: "off"
+    then:
+      # яркость не передаём — панель сама ставит дневную/ночную
+      - action: light.turn_on
+        target:
+          entity_id: light.panel_sarai_display_backlight
+  - action: timer.start
+    target:
+      entity_id: timer.sarai_ekran_10_min
+    data:
+      duration: "{{ ekran_dlitelnost }}"
