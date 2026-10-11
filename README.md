@@ -278,6 +278,9 @@ Codex…) ссылку на этот репозиторий и стартово�
   (agillis) — основа: железо, Wi-Fi, OTA-экран, тема, погода, попапы.
 * [ESPHome](https://esphome.io), [LVGL](https://lvgl.io),
   [Home Assistant](https://www.home-assistant.io), [Music Assistant](https://www.music-assistant.io).
+* [trudenboy](https://github.com/trudenboy) — автор провайдера Яндекс Музыки для Music Assistant
+  ([ma-provider-yandex-music](https://github.com/trudenboy/ma-provider-yandex-music)):
+  через него работают «Мне нравится» и «Моя волна».
 * Иконки — [Material Design Icons](https://pictogrammers.com/library/mdi/),
   шрифт — [Nunito](https://fonts.google.com/specimen/Nunito).
 
